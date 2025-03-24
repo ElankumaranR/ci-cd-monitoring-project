@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your repository from GitHub
-                git  git branch: 'main', url: 'https://github.com/ElankumaranR/ci-cd-monitoring-project.git'
+                git branch: 'main', url: 'https://github.com/ElankumaranR/ci-cd-monitoring-project.git'
             }
         }
         stage('Build') {
