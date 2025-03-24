@@ -1,0 +1,19 @@
+{
+  "dashboard": {
+    "title": "Spring Boot Metrics",
+    "panels": [
+      {
+        "title": "Memory Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "jvm_memory_used_bytes",
+            "legendFormat": "Memory Used",
+            "refId": "A"
+          }
+        ]
+      }
+    ]
+  }
+}
+
