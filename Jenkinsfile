@@ -12,14 +12,17 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('Docker Build & Push') {
-            steps {
-                // Build Docker image and push it to Docker Hub
-                sh 'docker build -t elankumaran21/springboot-app:latest .'
-                sh 'docker push elankumaran21/springboot-app:latest'
+stage('Docker Build & Push') {
+    steps {
+        script {
+            docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                def image = docker.build('elankumaran21/springboot-app:latest')
+                image.push()
             }
         }
-        stage('Deploy to Kubernetes') {
+    }
+}
+               stage('Deploy to Kubernetes') {
             steps {
                 sh 'kubectl apply -f k8s/deployment.yml'
                 sh 'kubectl apply -f k8s/service.yml'
