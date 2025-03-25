@@ -23,8 +23,7 @@ stage('Docker Build & Push') {
     }
 }
                stage('Deploy to Kubernetes') {
-            steps {
-                sh 'minikube start'              
+            steps {           
                 sh'kubectl apply -f k8s/deployment.yml --validate=false'
                 sh'kubectl apply -f k8s/service.yml --validate=false'
 
