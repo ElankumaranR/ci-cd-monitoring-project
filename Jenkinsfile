@@ -22,12 +22,15 @@ stage('Docker Build & Push') {
         }
     }
 }
-               stage('Deploy to Kubernetes') {
-            steps {           
-                sh'kubectl apply -f k8s/deployment.yml --validate=false'
-                sh'kubectl apply -f k8s/service.yml --validate=false'
-
-            }
+stage('Deploy to Kubernetes') {
+    steps {
+        script {
+            sh 'kubectl config use-context minikube'
+            sh 'kubectl get nodes'
+            sh 'kubectl apply -f k8s/deployment.yml --validate=false'
+            sh 'kubectl apply -f k8s/service.yml --validate=false'
         }
+    }
+}
     }
 }
