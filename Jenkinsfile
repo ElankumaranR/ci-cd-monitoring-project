@@ -29,6 +29,7 @@ stage('Deploy to Kubernetes') {
             sh 'kubectl get nodes'
             sh 'kubectl apply -f k8s/deployment.yml --validate=false'
             sh 'kubectl apply -f k8s/service.yml --validate=false'
+            sh 'minikube service springboot-service'
         }
     }
 }
