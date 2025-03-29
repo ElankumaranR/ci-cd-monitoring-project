@@ -61,5 +61,14 @@ pipeline {
                 }
             }
         }
+        stage('Expose Service') {
+    steps {
+        script {
+            sh '''
+            minikube service springboot-service --url
+            '''
+        }
+    }
+        }
     }
 }
